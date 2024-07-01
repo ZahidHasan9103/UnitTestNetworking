@@ -96,8 +96,8 @@
 		C07E96252C32E8C0005C7271 /* UnitTestNetworkingTests */ = {
 			isa = PBXGroup;
 			children = (
-				C07E962D2C32F23F005C7271 /* MockURLSession.swift */,
 				C07E962F2C32F389005C7271 /* ViewControllerTests.swift */,
+				C07E962D2C32F23F005C7271 /* MockURLSession.swift */,
 				C07E96312C32F46E005C7271 /* TestHelpers.swift */,
 			);
 			path = UnitTestNetworkingTests;
