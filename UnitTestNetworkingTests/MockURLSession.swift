@@ -11,12 +11,13 @@ import Foundation
 class MockURLSession: UrlSessionProtocol{
     var dataTaskCallCount = 0
     var dataTaskArgsRequest: [URLRequest] = []
-    
     func dataTask(with request: URLRequest, completionHandler: @escaping @Sendable (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
         dataTaskCallCount += 1
         dataTaskArgsRequest.append(request)
-        return URLSessionDataTask()
+        return DummyURLSessionDataTask()
     }
-    
-    
+}
+
+private class DummyURLSessionDataTask: URLSessionDataTask { override func resume() {
+}
 }
