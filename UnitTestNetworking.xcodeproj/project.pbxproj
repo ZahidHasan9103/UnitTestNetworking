@@ -13,7 +13,18 @@
 		C07E96142C32E847005C7271 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C07E96122C32E847005C7271 /* Main.storyboard */; };
 		C07E96162C32E84A005C7271 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C07E96152C32E84A005C7271 /* Assets.xcassets */; };
 		C07E96192C32E84A005C7271 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C07E96172C32E84A005C7271 /* LaunchScreen.storyboard */; };
+		C07E96272C32E8C0005C7271 /* UnitTestNetworkingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E96262C32E8C0005C7271 /* UnitTestNetworkingTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C07E96282C32E8C0005C7271 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C07E96012C32E847005C7271 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C07E96082C32E847005C7271;
+			remoteInfo = UnitTestNetworking;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		C07E96092C32E847005C7271 /* UnitTestNetworking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnitTestNetworking.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -24,10 +35,19 @@
 		C07E96152C32E84A005C7271 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C07E96182C32E84A005C7271 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C07E961A2C32E84A005C7271 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C07E96242C32E8C0005C7271 /* UnitTestNetworkingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTestNetworkingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C07E96262C32E8C0005C7271 /* UnitTestNetworkingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitTestNetworkingTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		C07E96062C32E847005C7271 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C07E96212C32E8C0005C7271 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -41,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				C07E960B2C32E847005C7271 /* UnitTestNetworking */,
+				C07E96252C32E8C0005C7271 /* UnitTestNetworkingTests */,
 				C07E960A2C32E847005C7271 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -49,6 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				C07E96092C32E847005C7271 /* UnitTestNetworking.app */,
+				C07E96242C32E8C0005C7271 /* UnitTestNetworkingTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -65,6 +87,14 @@
 				C07E961A2C32E84A005C7271 /* Info.plist */,
 			);
 			path = UnitTestNetworking;
+			sourceTree = "<group>";
+		};
+		C07E96252C32E8C0005C7271 /* UnitTestNetworkingTests */ = {
+			isa = PBXGroup;
+			children = (
+				C07E96262C32E8C0005C7271 /* UnitTestNetworkingTests.swift */,
+			);
+			path = UnitTestNetworkingTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -87,6 +117,24 @@
 			productReference = C07E96092C32E847005C7271 /* UnitTestNetworking.app */;
 			productType = "com.apple.product-type.application";
 		};
+		C07E96232C32E8C0005C7271 /* UnitTestNetworkingTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C07E962A2C32E8C0005C7271 /* Build configuration list for PBXNativeTarget "UnitTestNetworkingTests" */;
+			buildPhases = (
+				C07E96202C32E8C0005C7271 /* Sources */,
+				C07E96212C32E8C0005C7271 /* Frameworks */,
+				C07E96222C32E8C0005C7271 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C07E96292C32E8C0005C7271 /* PBXTargetDependency */,
+			);
+			name = UnitTestNetworkingTests;
+			productName = UnitTestNetworkingTests;
+			productReference = C07E96242C32E8C0005C7271 /* UnitTestNetworkingTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -99,6 +147,10 @@
 				TargetAttributes = {
 					C07E96082C32E847005C7271 = {
 						CreatedOnToolsVersion = 15.2;
+					};
+					C07E96232C32E8C0005C7271 = {
+						CreatedOnToolsVersion = 15.2;
+						TestTargetID = C07E96082C32E847005C7271;
 					};
 				};
 			};
@@ -116,6 +168,7 @@
 			projectRoot = "";
 			targets = (
 				C07E96082C32E847005C7271 /* UnitTestNetworking */,
+				C07E96232C32E8C0005C7271 /* UnitTestNetworkingTests */,
 			);
 		};
 /* End PBXProject section */
@@ -128,6 +181,13 @@
 				C07E96192C32E84A005C7271 /* LaunchScreen.storyboard in Resources */,
 				C07E96162C32E84A005C7271 /* Assets.xcassets in Resources */,
 				C07E96142C32E847005C7271 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C07E96222C32E8C0005C7271 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,7 +204,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C07E96202C32E8C0005C7271 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C07E96272C32E8C0005C7271 /* UnitTestNetworkingTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C07E96292C32E8C0005C7271 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C07E96082C32E847005C7271 /* UnitTestNetworking */;
+			targetProxy = C07E96282C32E8C0005C7271 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		C07E96122C32E847005C7271 /* Main.storyboard */ = {
@@ -341,6 +417,42 @@
 			};
 			name = Release;
 		};
+		C07E962B2C32E8C0005C7271 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9T6VTX7NFQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zeusEX.com.UnitTestNetworkingTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UnitTestNetworking.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/UnitTestNetworking";
+			};
+			name = Debug;
+		};
+		C07E962C2C32E8C0005C7271 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9T6VTX7NFQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zeusEX.com.UnitTestNetworkingTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UnitTestNetworking.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/UnitTestNetworking";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -358,6 +470,15 @@
 			buildConfigurations = (
 				C07E961E2C32E84A005C7271 /* Debug */,
 				C07E961F2C32E84A005C7271 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C07E962A2C32E8C0005C7271 /* Build configuration list for PBXNativeTarget "UnitTestNetworkingTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C07E962B2C32E8C0005C7271 /* Debug */,
+				C07E962C2C32E8C0005C7271 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
