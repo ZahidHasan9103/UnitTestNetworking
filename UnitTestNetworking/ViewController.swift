@@ -11,6 +11,7 @@ class ViewController: UIViewController {
 
     @IBOutlet private(set) weak var button: UIButton!
     private var dataTask: URLSessionDataTask?
+    var session: UrlSessionProtocol = URLSession.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +28,7 @@ class ViewController: UIViewController {
               let url = URL(string: "https://itunes.apple.com/search?" +
                             "media=ebook&term=\(encodedTerms)") else {return}
         let request = URLRequest(url: url)
-        dataTask = URLSession.shared.dataTask(
+        dataTask = session.dataTask(
             with: request,
             completionHandler: {
             [weak self] (data, response, error) in
@@ -52,3 +53,10 @@ class ViewController: UIViewController {
     
 }
 
+protocol UrlSessionProtocol{
+    func dataTask(with request: URLRequest, completionHandler: @escaping @Sendable (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask
+}
+
+extension URLSession: UrlSessionProtocol{
+    
+}
