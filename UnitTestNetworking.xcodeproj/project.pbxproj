@@ -17,6 +17,12 @@
 		C07E96302C32F389005C7271 /* ViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E962F2C32F389005C7271 /* ViewControllerTests.swift */; };
 		C07E96322C32F46E005C7271 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E96312C32F46E005C7271 /* TestHelpers.swift */; };
 		C07E96352C33E16A005C7271 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E96342C33E16A005C7271 /* SearchResult.swift */; };
+		C07E963B2C34462F005C7271 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = C07E96372C34462F005C7271 /* CHANGELOG.md */; };
+		C07E963C2C34462F005C7271 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C07E96382C34462F005C7271 /* README.md */; };
+		C07E963D2C34462F005C7271 /* ViewControllerPresentationSpy.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = C07E96392C34462F005C7271 /* ViewControllerPresentationSpy.xcframework */; };
+		C07E963E2C34462F005C7271 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = C07E963A2C34462F005C7271 /* LICENSE.txt */; };
+		C07E963F2C344681005C7271 /* ViewControllerPresentationSpy.xcframework in Resources */ = {isa = PBXBuildFile; fileRef = C07E96392C34462F005C7271 /* ViewControllerPresentationSpy.xcframework */; };
+		C07E96412C344AFE005C7271 /* TestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07E96402C344AFE005C7271 /* TestError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +49,11 @@
 		C07E962F2C32F389005C7271 /* ViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerTests.swift; sourceTree = "<group>"; };
 		C07E96312C32F46E005C7271 /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
 		C07E96342C33E16A005C7271 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
+		C07E96372C34462F005C7271 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
+		C07E96382C34462F005C7271 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C07E96392C34462F005C7271 /* ViewControllerPresentationSpy.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = ViewControllerPresentationSpy.xcframework; sourceTree = "<group>"; };
+		C07E963A2C34462F005C7271 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		C07E96402C344AFE005C7271 /* TestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C07E963D2C34462F005C7271 /* ViewControllerPresentationSpy.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,9 +111,11 @@
 		C07E96252C32E8C0005C7271 /* UnitTestNetworkingTests */ = {
 			isa = PBXGroup;
 			children = (
+				C07E96362C34462F005C7271 /* ViewControllerPresentationSpy-7.0.0 */,
 				C07E962F2C32F389005C7271 /* ViewControllerTests.swift */,
 				C07E962D2C32F23F005C7271 /* MockURLSession.swift */,
 				C07E96312C32F46E005C7271 /* TestHelpers.swift */,
+				C07E96402C344AFE005C7271 /* TestError.swift */,
 			);
 			path = UnitTestNetworkingTests;
 			sourceTree = "<group>";
@@ -112,6 +126,17 @@
 				C07E96342C33E16A005C7271 /* SearchResult.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		C07E96362C34462F005C7271 /* ViewControllerPresentationSpy-7.0.0 */ = {
+			isa = PBXGroup;
+			children = (
+				C07E96372C34462F005C7271 /* CHANGELOG.md */,
+				C07E96382C34462F005C7271 /* README.md */,
+				C07E96392C34462F005C7271 /* ViewControllerPresentationSpy.xcframework */,
+				C07E963A2C34462F005C7271 /* LICENSE.txt */,
+			);
+			path = "ViewControllerPresentationSpy-7.0.0";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,6 +230,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C07E963F2C344681005C7271 /* ViewControllerPresentationSpy.xcframework in Resources */,
+				C07E963E2C34462F005C7271 /* LICENSE.txt in Resources */,
+				C07E963C2C34462F005C7271 /* README.md in Resources */,
+				C07E963B2C34462F005C7271 /* CHANGELOG.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,6 +255,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C07E96412C344AFE005C7271 /* TestError.swift in Sources */,
 				C07E96302C32F389005C7271 /* ViewControllerTests.swift in Sources */,
 				C07E962E2C32F23F005C7271 /* MockURLSession.swift in Sources */,
 				C07E96322C32F46E005C7271 /* TestHelpers.swift in Sources */,

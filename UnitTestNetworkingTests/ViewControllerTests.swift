@@ -6,40 +6,41 @@
 //
 
 import XCTest
+import ViewControllerPresentationSpy
 @testable import UnitTestNetworking
 
 final class ViewControllerTests: XCTestCase {
+    private var sut: ViewController!
+    private var mockURLSession: MockURLSession!
+    private var alertVerifier: AlertVerifier!
     
-    var sut: ViewController!
-    var mockURLSession: MockURLSession!
-    
-    override func setUp() {
+    @MainActor override func setUp() {
         super.setUp()
+        alertVerifier = AlertVerifier()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         sut = storyboard.instantiateViewController(identifier: String(describing: ViewController.self))
         mockURLSession = MockURLSession()
         sut.session = mockURLSession
+        sut.loadViewIfNeeded()
     }
     
     override func tearDown() {
+        alertVerifier = nil
         sut = nil
         mockURLSession = nil
         super.tearDown()
     }
     
     func test_tappingButton_shouldMakeDataTaskToSearchForEBookOutFromBoneVille(){
-        
-        sut.loadViewIfNeeded()
         tap(sut.button)
-        
         mockURLSession.verifyDataTask(with: URLRequest(url: URL(string: "https://itunes.apple.com/search?" + "media=ebook&term=out%20from%20boneville")!))
         
     }
     
     func test_searchBookNetworkCall_withSuccessResponse_shouldSaveDataInResults(){
-        sut.loadViewIfNeeded()
         tap(sut.button)
         let handleResultsCall = expectation(description: "handleResults called")
+        
         sut.handleResults = {_ in
             handleResultsCall.fulfill()
         }
@@ -52,13 +53,49 @@ final class ViewControllerTests: XCTestCase {
     }
     
     func test_searchBookNetworkCall_withSuccessBeforeAsync_shouldNotSaveDataInResults(){
-        sut.loadViewIfNeeded()
         tap(sut.button)
         
         mockURLSession.dataTaskArgsCompletionHandler.first?(jsonData(), response(statusCode: 200), nil)
         
         XCTAssertEqual(sut.results, [])
     }
+    
+    @MainActor func test_searchBookNetworkCall_withError_shouldShowAlert(){
+        tap(sut.button)
+        let alertShown = expectation(description: "alert shown")
+        alertVerifier.testCompletion = {
+            alertShown.fulfill()
+        }
+        
+        mockURLSession.dataTaskArgsCompletionHandler.first?(nil,nil, TestError(message: "oh no"))
+        waitForExpectations(timeout: 0.01)
+        verifyErrorAlert(message: "oh no")
+    }
+    
+    @MainActor func test_searchBookNetworkCall_withErrorPreAsync_shouldNotShowAlert(){
+        tap(sut.button)
+        
+        mockURLSession.dataTaskArgsCompletionHandler.first?(nil,nil, TestError(message: "oh no"))
+        XCTAssertEqual(alertVerifier.presentedCount, 0)
+    }
+    
+    @MainActor func verifyErrorAlert(
+        message: String,
+        file: StaticString = #file,
+        line: UInt = #line){
+            alertVerifier.verify(
+                title: "Network Problem",
+                message: message,
+                animated: true,
+                actions: [
+                    .default("OK")
+                ],
+            presentingViewController: sut,
+                file: file,
+                line: line
+            )
+            XCTAssertEqual(alertVerifier.preferredAction?.title, "OK", "preferred action", file: file, line: line)
+        }
     
 }
 
@@ -69,6 +106,10 @@ private func response(statusCode: Int) -> HTTPURLResponse?{
         httpVersion: nil,
         headerFields: nil)
 }
+
+
+
+
 
 
 private func jsonData() -> Data {
