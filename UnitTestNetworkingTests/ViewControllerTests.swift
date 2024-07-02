@@ -60,6 +60,18 @@ final class ViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.results, [])
     }
     
+    @MainActor func test_searchNetworkCall_withMalformedResponse_shouldShowAlert(){
+        tap(sut.button)
+        let alertShown = expectation(description: "alert shown")
+        alertVerifier.testCompletion = {
+            alertShown.fulfill()
+        }
+        
+        mockURLSession.dataTaskArgsCompletionHandler.first?(malformedJsonData(), response(statusCode: 200), nil)
+        waitForExpectations(timeout: 0.01)
+        verifyErrorAlert(message: "The data couldn’t be read because it is missing.")
+    }
+    
     @MainActor func test_searchBookNetworkCall_withError_shouldShowAlert(){
         tap(sut.button)
         let alertShown = expectation(description: "alert shown")
@@ -107,17 +119,29 @@ private func response(statusCode: Int) -> HTTPURLResponse?{
         headerFields: nil)
 }
 
-
-
-
-
-
 private func jsonData() -> Data {
  """
     {
         "results": [
           {
             "artistName": "Artist",
+            "trackName": "Track",
+            "averageUserRating": 2.5,
+            "genres": [
+                        "Foo",
+                        "Bar"
+                      ]
+                  }
+              ]
+        }
+""".data(using: .utf8)!
+}
+
+private func malformedJsonData() -> Data {
+ """
+    {
+        "results": [
+          {
             "trackName": "Track",
             "averageUserRating": 2.5,
             "genres": [
