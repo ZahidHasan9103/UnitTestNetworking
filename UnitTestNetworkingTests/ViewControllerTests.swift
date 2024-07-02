@@ -119,6 +119,34 @@ final class ViewControllerTests: XCTestCase {
 
     }
     
+    //MARK: - Button
+    func test_buttonShouldBeEnabledInitially(){
+        XCTAssertTrue(sut.button.isEnabled)
+    }
+    
+    func test_buttonShouldBeDisabled(){
+        tap(sut.button)
+        XCTAssertFalse(sut.button.isEnabled)
+    }
+    
+    func test_searchNetworkCall_withResponse_shouldReEnableButton(){
+        tap(sut.button)
+        let handleResultCalled = expectation(description: "handle result called")
+        sut.handleResults = {_ in
+            handleResultCalled.fulfill()
+        }
+        
+        mockURLSession.dataTaskArgsCompletionHandler.first?(jsonData(), response(statusCode: 200), nil)
+        waitForExpectations(timeout: 0.01)
+        XCTAssertTrue(sut.button.isEnabled)
+    }
+    
+    func test_searchNetworkCall_withResponseBeforeAsync_shouldNotReEnableButton(){
+        tap(sut.button)
+        mockURLSession.dataTaskArgsCompletionHandler.first?(jsonData(), response(statusCode: 200), nil)
+        XCTAssertFalse(sut.button.isEnabled)
+    }
+    
     @MainActor func verifyErrorAlert(
         message: String,
         file: StaticString = #file,
