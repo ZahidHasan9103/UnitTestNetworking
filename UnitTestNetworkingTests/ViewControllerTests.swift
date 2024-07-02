@@ -60,18 +60,6 @@ final class ViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.results, [])
     }
     
-    @MainActor func test_searchNetworkCall_withMalformedResponse_shouldShowAlert(){
-        tap(sut.button)
-        let alertShown = expectation(description: "alert shown")
-        alertVerifier.testCompletion = {
-            alertShown.fulfill()
-        }
-        
-        mockURLSession.dataTaskArgsCompletionHandler.first?(malformedJsonData(), response(statusCode: 200), nil)
-        waitForExpectations(timeout: 0.01)
-        verifyErrorAlert(message: "The data couldn’t be read because it is missing.")
-    }
-    
     @MainActor func test_searchBookNetworkCall_withError_shouldShowAlert(){
         tap(sut.button)
         let alertShown = expectation(description: "alert shown")
@@ -89,6 +77,46 @@ final class ViewControllerTests: XCTestCase {
         
         mockURLSession.dataTaskArgsCompletionHandler.first?(nil,nil, TestError(message: "oh no"))
         XCTAssertEqual(alertVerifier.presentedCount, 0)
+    }
+    
+    @MainActor func test_searchNetworkCall_withMalformedResponse_shouldShowAlert(){
+        tap(sut.button)
+        let alertShown = expectation(description: "alert shown")
+        alertVerifier.testCompletion = {
+            alertShown.fulfill()
+        }
+        
+        mockURLSession.dataTaskArgsCompletionHandler.first?(malformedJsonData(), response(statusCode: 200), nil)
+        waitForExpectations(timeout: 0.01)
+        verifyErrorAlert(message: "The data couldn’t be read because it is missing.")
+    }
+    
+    @MainActor func test_searchNetworkCall_withMalformedResponseBeforeAsync_shouldNotShowAlert(){
+        tap(sut.button)
+        
+        mockURLSession.dataTaskArgsCompletionHandler.first?(malformedJsonData(), response(statusCode: 200), nil)
+        
+        XCTAssertEqual(alertVerifier.presentedCount, 0)
+    }
+    
+    @MainActor func test_searchNetworkCall_withResponse500_shouldShowAlert(){
+        tap(sut.button)
+        let alertShown = expectation(description: "alert shown")
+        alertVerifier.testCompletion = {
+            alertShown.fulfill()
+        }
+        
+        mockURLSession.dataTaskArgsCompletionHandler.first?(jsonData(), response(statusCode: 500), nil)
+        waitForExpectations(timeout: 0.01)
+        verifyErrorAlert(message: "Response: internal server error")
+    }
+    
+    @MainActor func test_searchNetworkCall_withResponse500BeforeAsync_shouldNotShowAlert(){
+        tap(sut.button)
+        
+        mockURLSession.dataTaskArgsCompletionHandler.first?(jsonData(), response(statusCode: 500), nil)
+        XCTAssertEqual(alertVerifier.presentedCount, 0)
+
     }
     
     @MainActor func verifyErrorAlert(
