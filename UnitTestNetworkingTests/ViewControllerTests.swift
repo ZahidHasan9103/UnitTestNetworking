@@ -26,6 +26,7 @@ final class ViewControllerTests: XCTestCase {
         mockURLSession = nil
         super.tearDown()
     }
+    
     func test_tappingButton_shouldMakeDataTaskToSearchForEBookOutFromBoneVille(){
         
         sut.loadViewIfNeeded()
@@ -48,6 +49,15 @@ final class ViewControllerTests: XCTestCase {
         
         XCTAssertEqual(sut.results, [SearchResult(artistName: "Artist", trackName: "Track", averageUserRating: 2.5, genres: ["Foo", "Bar"])])
         
+    }
+    
+    func test_searchBookNetworkCall_withSuccessBeforeAsync_shouldNotSaveDataInResults(){
+        sut.loadViewIfNeeded()
+        tap(sut.button)
+        
+        mockURLSession.dataTaskArgsCompletionHandler.first?(jsonData(), response(statusCode: 200), nil)
+        
+        XCTAssertEqual(sut.results, [])
     }
     
 }

@@ -9,6 +9,10 @@ import Foundation
 import XCTest
 @testable import UnitTestNetworking
 
+private class DummyURLSessionDataTask: URLSessionDataTask {
+    override func resume() {}
+}
+
 class MockURLSession: UrlSessionProtocol{
     var dataTaskCallCount = 0
     var dataTaskArgsRequest: [URLRequest] = []
@@ -32,13 +36,11 @@ class MockURLSession: UrlSessionProtocol{
     private func dataTaskWasCalledOnce(
         file: StaticString = #file,
         line: UInt = #line) -> Bool{
-            return verifyMethodCalledOnce(
-                methodName: "dataTask(with:completionHandler", 
+            verifyMethodCalledOnce(
+                methodName: "dataTask(with:completionHandler",
                 callCount: dataTaskCallCount,
                 describeArguments: "request: \(dataTaskArgsRequest)")
         }
 }
 
-private class DummyURLSessionDataTask: URLSessionDataTask {
-    override func resume() {}
-}
+
